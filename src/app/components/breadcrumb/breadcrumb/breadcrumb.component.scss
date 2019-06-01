@@ -1,0 +1,94 @@
+@import '../../../scss/shared/shared.scss';
+
+.title-breadcrumb {
+    position: fixed;
+    left: $width-sidebar;
+    width: calc(100% - #{$width-sidebar});
+    top: $heigth-header;
+    height: $heigth-header;
+    border-bottom: thin solid $grey;
+    padding: 0 $space-separator;
+    display: flex;
+    align-items: center;
+    background: $white;
+    z-index: 1;
+    @include commonAnimate();
+
+    .title {
+        color: $blue;
+        font-size: 1.4rem;
+        margin: 0;
+    }
+
+    .mobile-back-button {
+        display: none;
+        position: absolute;
+        left: $space-separator;
+        font-size: larger;
+        color: $blue;
+    }
+
+    .bread{
+        color: $blue-ligth;
+        place-content: flex-end;
+        font-size: 10pt;
+
+        .step {
+            display: inline-flex;
+            align-items: center;
+
+            i {
+                margin-top: 2px;
+            }
+
+            p {
+                margin: 0;
+                pointer-events: none;
+
+                &.url {
+                    pointer-events: all;
+                    cursor: pointer;
+
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+
+                &.bread-father {
+                    color: $grey;
+                }
+            }
+        }
+    }
+
+    &.menu-close {
+        left: 0;
+        width: 100%;
+        @include commonAnimate();
+    }
+
+    &.menu-minimized {
+        left: $width-sidebar-minimized;
+        width: calc(100% - #{$width-sidebar-minimized});
+        @include commonAnimate();
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .title-breadcrumb {
+        place-content: center;
+        height: calc(#{$heigth-header} - 15px);
+
+        .title {
+            font-size: 1em;
+        }
+
+        .mobile-back-button {
+            display: block;
+        }
+
+        .bread {
+            display: none !important;
+        }
+    }
+}

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300');
+
+@mixin iconToastr() {
+    font-family: $font-family-icons;
+    font-size: 20pt;
+    margin-right: 15px;
+}
+
+@mixin messageToastr() {
+    display: flex;
+    align-items: center;
+    place-content: center;
+    font-size: 10pt;
+}
+
+@mixin configureToastr($background, $icon) {
+    background: $background;
+    padding: 2px;
+    border-radius: 50px;
+    
+    .toast-message{
+        @include messageToastr();
+
+        &:before{
+            @include iconToastr();
+            content: $icon;
+        }
+    }
+}
+
+@mixin commonFont() {
+    font-family: $font-family !important;
+}
+
+@mixin commonAnimate() {
+    @include animate(.2s);
+}
+
+@mixin loadingIconAnimate() {
+    -webkit-animation: mdi-spin .5s infinite linear;
+    animation: mdi-spin .5s infinite linear;
+}
+
+@mixin animate($time) {
+    -webkit-transition: all $time ease;
+    -moz-transition: all $time ease;
+    -o-transition: all $time ease;
+    transition: all $time ease;
+}
+
+@mixin gradientTextColor($color1, $color2) {
+	background: linear-gradient(to right, $color1 0%, $color2 100%);
+	-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin commonLinearGradient() {
+    @include linearGradient($color1: $blue, $color2: $green)
+}
+
+@mixin sidebarColorGradient() {
+    background: linear-gradient(to bottom, black 0%, $red-hard 100%);
+    background-size: 150% 150%;
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .77;
+}
+
+@mixin linearGradient($color1, $color2) {
+    background: $color1;
+    background: -webkit-linear-gradient(45deg, $color1, $color2);
+    background: -o-linear-gradient(45deg, $color1, $color2);
+    background: -moz-linear-gradient(45deg, $color1, $color2);
+    background: linear-gradient(45deg, $color1, $color2);
+}
+
+@mixin propertiesLineGradient($position, $color1, $color2) {
+    display: block;
+    position: $position;
+ 
+    &:before{
+       content: "";
+       display: block;
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       width: 0;
+       height: 1px;
+ 
+       @include animate($time: .5s);
+       @include linearGradient($color1: $color1, $color2: $color2);
+    }
+}
+
+@mixin commonScrollBar() {
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar {
+        width: .5em;
+        height: .5em;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: $grey;
+    }
+}

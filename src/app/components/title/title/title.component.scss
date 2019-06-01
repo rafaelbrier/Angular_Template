@@ -1,0 +1,13 @@
+@import '../../../scss/shared/shared.scss';
+
+h2 {
+    color: $blue;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+hr {
+    border-color: $grey;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}

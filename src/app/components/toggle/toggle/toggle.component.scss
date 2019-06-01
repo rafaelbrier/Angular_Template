@@ -1,0 +1,83 @@
+@import '../../../scss/shared/shared.scss';
+
+$height-toggle: 25px;
+$difference: 4px;
+$width-pin: $height-toggle - $difference;
+$height-pin: $height-toggle - $difference;
+
+:host {
+
+    &[x-small] {
+        $height-toggle: 5px;
+        $width-pin: $height-toggle - $difference;
+        $height-pin: $height-toggle - $difference;
+    }
+
+    &[small] {
+        $height-toggle: 10px;
+        $width-pin: $height-toggle - $difference;
+        $height-pin: $height-toggle - $difference;
+    }
+    
+    &[medium] {
+        $height-toggle: 30px;
+        $width-pin: $height-toggle - $difference;
+        $height-pin: $height-toggle - $difference;
+    }
+
+    &[big] {
+        $height-toggle: 50px;
+        $width-pin: $height-toggle - $difference;
+        $height-pin: $height-toggle - $difference;
+    }
+
+    &[transparent] {
+
+        .toggle {
+            background: transparent;
+            box-shadow: none;
+
+            .pin {
+                background: transparent;
+                border: thin solid $grey;
+                box-shadow: none;
+            }
+
+            &.active {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .toggle {
+        width: 100%;
+        height: $height-toggle;
+        border: thin solid;
+        border-color: rgb(223, 223, 223);
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background: $white;
+        box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+        @include commonAnimate();
+    
+        .pin {
+            width: $width-pin;
+            height: $height-pin;
+            border-radius: 100%;
+            margin-left: 1px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        &.active {
+            background-color: $green;
+            @include commonAnimate();
+
+            .pin {
+                margin-left: calc(100% - (#{$width-pin} + 1px));
+            }
+        }
+    }
+}

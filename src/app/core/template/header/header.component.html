@@ -1,0 +1,13 @@
+<div class="header" [ngClass]="{'menu-close' : isClosed, 'menu-minimized' : isMinimized}">
+    <div class="button-toggle-sidebar" (click)="toggle()">
+        <i class="mdi mdi-menu"></i>
+    </div>
+    <img class="logo" src="assets/logo-stefanini-color.svg">
+    <div class="controls">
+        <div class="user">
+            <span>Olá, {{user.username}}</span> |
+        </div>
+        <i class="mdi mdi-bell-outline"></i>
+        <i class="mdi mdi-power" (click)="logout()"></i>
+    </div>
+</div>

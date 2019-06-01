@@ -1,0 +1,21 @@
+@import 'app/scss/generics.scss';
+
+
+#toast-container {
+
+    .custom-info {
+        @include configureToastr($background: $sky-blue, $icon: "\f2fd");
+    }
+
+    .custom-error{
+        @include configureToastr($background: $red, $icon: "\f15a");
+    }
+
+    .custom-success{
+        @include configureToastr($background: $green, $icon: "\f5e1");
+    }
+
+    .custom-warning{
+        @include configureToastr($background: $orange, $icon: "\f5d6");
+    }
+}

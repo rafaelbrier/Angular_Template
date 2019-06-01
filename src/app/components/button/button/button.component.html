@@ -1,0 +1,4 @@
+<button type="{{type}}" appTooltip="{{appTooltip}}" tooltipPosition="{{tooltipPosition}}">
+    <i class="{{icon}}" *ngIf="icon"></i>
+    <span [ngClass]="{'ml-2' : label && icon, 'mr-2' : label && icon}">{{label}}</span>
+</button>

@@ -1,0 +1,33 @@
+<table>
+    <thead>
+        <span [ngStyle]="{'display' : 'table-row','width' : widthHead}">
+            <th *ngFor="let col of cols" [ngStyle]="{'width' : col.width, 'text-align' : col.align}">
+                {{col.header}}
+            </th>
+            <th *ngIf="hasActions" [ngStyle]="{'width' : actionsWidth}">
+                Ações
+            </th>
+        </span>
+    </thead>
+    <tbody [ngStyle]="{'max-height' : bodyMaxHeight}">
+        <tr *ngFor="let value of values; let i = index">
+            <td #td *ngFor="let col of cols" [ngStyle]="{'width' : col.width, 'text-align' : col.align}" >
+                <span class="header-mobile">{{col.header}}:</span>
+                <span #textHeader class="text-header" appTooltip="{{createTooltip(td, textHeader, value[col.field])}}"
+                      *ngIf="col.functionChangeField === null">
+                        {{col.pipe ? col.pipe.transform(value[col.field]) : value[col.field]}}
+                </span>
+                <span #textHeader class="text-header" appTooltip="{{createTooltip(td, textHeader, value[col.field])}}"
+                      *ngIf="col.functionChangeField !== null">
+                        {{callFunction(col, value)}}
+                </span>
+            </td>
+            <td #td *ngIf="hasActions" class="actions" [ngStyle]="{'width' : actionsWidth}">
+                <ng-container *ngTemplateOutlet="layoutTemplate; context: { rowData: value, index: i}">
+                </ng-container>
+            </td>
+        </tr>
+        <p *ngIf="!values || values.length == 0" class="m-0 text-center empty-message"
+            style="border-bottom: thin solid lightgrey !important;">{{emptyMessage}}</p>
+    </tbody>
+</table>

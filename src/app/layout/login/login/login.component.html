@@ -1,0 +1,37 @@
+<div class="login">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="w-100 d-inline-flex">
+    <div class="content-img"></div>
+    <div class="content-login">
+      <div class="box form-group">
+        <img class="logo" src="assets/UmbrellaLogo.png">
+        <div class="row mt-0 mt-sm-4 mt-md-4">
+          <div class="col-12">
+            <app-input label="Username *" formControlName="username" class="form-control" type="text" white
+              [showClearButton]="false"
+              [ngClass]="{ 'is-invalid': submitted && form.username.errors, 'white' : isPhoneVersion }">
+            </app-input>
+            <app-invalid-feedback [formItem]="form.username" validation="required" [submitted]="submitted"
+              message="O Campo Username é obrigatório!"></app-invalid-feedback>
+          </div>
+        </div>
+        <div class="row mt-0 mt-sm-4 mt-md-4">
+          <div class="col-12">
+            <app-input label="Password *" formControlName="password" class="form-control" type="password" white
+              [showClearButton]="false" [showSeePasswordButton]="true"
+              [ngClass]="{ 'is-invalid': submitted && form.password.errors, 'white' : isPhoneVersion }">
+            </app-input>
+            <app-invalid-feedback [formItem]="form.password" validation="required" [submitted]="submitted"
+              message="O Campo Password é obrigatório!"></app-invalid-feedback>
+            <app-invalid-feedback [formItem]="form.password" validation="minlength"
+              message="O Campo Password deve possuir pelo menos 4 digitos!"></app-invalid-feedback>
+          </div>
+        </div>
+        <div class="row mt-0 mt-sm-4 mt-md-4">
+          <div class="col-12 text-center">
+            <app-button label="Entrar" type="submit" btn-red></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

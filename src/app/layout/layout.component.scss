@@ -1,0 +1,25 @@
+@import '../scss/shared/shared.scss';
+
+.router-container{
+    margin-left: $width-sidebar;
+    margin-top: $heigth-header;
+    @include commonAnimate();
+
+    &.menu-close{
+        margin-left: 0;
+        @include commonAnimate();
+    }
+
+    &.menu-minimized{
+        margin-left: $width-sidebar-minimized;
+        @include commonAnimate();
+    }
+
+    &.top-breadcrumb{
+        margin-top: calc(#{$heigth-header} * 2);
+    }
+}
+
+.container-fluid{
+    padding-top: 15px;
+}

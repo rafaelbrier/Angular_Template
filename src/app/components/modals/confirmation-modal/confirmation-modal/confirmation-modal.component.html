@@ -1,0 +1,14 @@
+<div class="container-modal" (click)="confirmationModalService.reject()" *ngIf="confirmationModalService.openModal">
+    <div class="confirmation-modal">
+        <div class="confirmation-modal-header">
+            <p>{{confirmationModalService.modal.header}}</p>
+        </div>
+        <div class="container-message">
+            <p>{{confirmationModalService.modal.message}}</p>
+        </div>
+        <div class="container-actions">
+            <app-button label="{{confirmationModalService.modal.acceptButton}}" (click)="confirmationModalService.accept()" class="mr-2"></app-button>
+            <app-button label="{{confirmationModalService.modal.rejectButton}}" (click)="confirmationModalService.reject()" ></app-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,267 @@
+@import '../../../scss/shared/shared.scss';
+
+.sidebar {
+    position: fixed;
+    width: $width-sidebar;
+    top: 0;
+    height: 100vh;
+    left: 0;
+    background: $white;
+    z-index: 2;
+    @include commonAnimate();
+
+    .logo {
+        width: calc(100% - #{$padding-li} * 2);
+        height: $heigth-header;
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+        border-bottom: thin solid $white;
+
+        .logo-full {
+            width: 60%;
+            height: 60%;
+            margin: 0 auto;
+        }
+
+        .logo-signature{
+            display: none;
+            margin: 0 auto;
+            width: 75%;
+            height: 75%;
+        }
+    }
+
+    &.minimize-sidebar{
+        width: $width-sidebar-minimized;
+        @include commonAnimate();
+        
+        .logo {
+            
+            .logo-full {
+                display: none;
+            }
+
+            .logo-signature {
+                display: block;
+            }
+        }
+
+        .sidebar-controls {
+            place-content: center;
+
+            i:not(.control-minization) {
+                display: none;
+            }
+        }
+
+        ul {
+            li {
+                .content-item {
+
+                    i {
+                        margin: 0 auto;
+                        font-size: 18pt;
+                    }
+
+                    .chevron-icon {
+                        display: none;
+                    }
+
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            width: $width-sidebar;
+            box-shadow: 0 0 16px -6px black;
+            @include commonAnimate();
+
+            .logo {
+                .logo-full {
+                    display: block;
+                }
+    
+                .logo-signature {
+                    display: none;
+                }
+            }
+
+            .sidebar-controls {
+                place-content: flex-end;
+
+                i:not(.control-minization) {
+                    display: flex;
+                }
+            }
+
+            ul {
+                li {
+                    .content-item {
+    
+                        i {
+                            margin: 0;
+                            font-size: 15pt;
+                        }
+    
+                        .chevron-icon {
+                            display: block;
+                        }
+    
+                        span {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .background{
+        position: absolute;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        background: url('../../../../assets/bg-menu-3.jpg');
+        background-size: cover;
+        background-position: center center;
+
+        &:after {
+            content: "";
+            @include sidebarColorGradient();
+        }
+    }
+
+    .sidebar-controls {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - #{$padding-li} * 2);
+        left: 0;
+        display: inline-flex;
+        align-items: center;
+        margin: 0 $padding-li;
+        border-top: thin solid $white;
+        place-content: flex-end;
+
+        i {
+            font-size: 15pt;
+            color: white;
+            cursor: pointer;
+            padding: 0 $space-separator;
+            width: $heigth-header;
+            height: $heigth-header;
+            align-items: center;
+            display: flex;
+            place-content: center;
+            
+            &:hover {
+                background: #ffffff36;
+            }
+        }
+    }
+
+    ul {
+        li {
+            display: flex;
+            align-items: center;
+            height: $height-li;
+            margin-left: $padding-li;
+            margin-right: $padding-li;
+            margin-top: $padding-li;
+            padding: $padding-li;
+            cursor: pointer;
+            font-weight: 100;
+            color: $white;
+
+            .content-item {
+                display: flex;
+                width: 100%;
+                align-items: center;
+
+                span {
+                    margin-left: $margin-left-body;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                i {
+                    font-size: 16pt;
+                }
+                
+                .chevron-icon {
+                    font-size: 12pt;
+                    @include commonAnimate();
+                }
+            }
+
+            &.loading {
+                &:before {
+                    font-family: $font-family-icons;
+                    content: "\f771";
+                    position: absolute;
+                    right: calc(#{$padding-li} * 2);
+                    @include loadingIconAnimate();
+                }
+            }
+
+            &.active-sub-menu,
+            &:hover,
+            &.active {
+                border-bottom: none;
+                background: #ffffff36;
+                color: white;
+                border-radius: 6px;
+            }
+
+            &.active-sub-menu {
+                align-items: flex-start;
+
+                .chevron-icon {
+                    transform: rotate(-180deg);
+                    @include commonAnimate();
+                }
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &.menu-close {
+        left: -$width-sidebar;
+        @include commonAnimate();
+    }
+}
+
+.shadow-menu {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: $width-sidebar;
+    top: 0;
+    z-index: 4;
+    background: #ffffffd1;
+
+    i {
+        font-size: 20pt;
+        color: $blue;
+        margin-left: $space-separator;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        .sidebar-controls {
+            i.control-minization {
+                display: none;
+            }
+        }
+    }
+}

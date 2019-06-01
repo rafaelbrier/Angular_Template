@@ -1,0 +1,179 @@
+@import '../../../scss/shared/shared.scss';
+
+@mixin input($border-color, $color, $place-holder-color) {
+   width: 100%;
+   border-radius: 0;
+   border: none;
+   border-bottom: thin solid $border-color;
+   padding: 3px;
+   color: $color;
+   background: transparent;
+   height: 30px;
+
+   &.padding-filled {
+     padding-right: 19px;
+   }
+
+   &:focus {
+       outline: none;
+   }
+
+   &::-webkit-input-placeholder {
+       color: $place-holder-color;
+   }
+   
+   &:-moz-placeholder {
+      color: $place-holder-color;
+      opacity: 1;
+   }
+
+   &::-moz-placeholder {
+      color: $place-holder-color;
+      opacity: 1;
+   }
+
+   &:-ms-input-placeholder {
+      color: $place-holder-color;
+   }
+
+   &::-ms-input-placeholder {
+      color: $place-holder-color;
+   }
+   
+   &::placeholder { 
+      color: $place-holder-color;
+   }
+}
+
+@mixin label($color) {
+   display: flex;
+   color: $color;
+}
+
+@mixin icons($color, $background) {
+   position: relative;
+   right: 0;
+   font-size: 13pt;
+   bottom: 27px;
+   float: right;
+   color: $color;
+   background: $background;
+   cursor: pointer;
+}
+
+@mixin constructInput($label-color, $icon-color, $icon-background, $input-border-color, $input-color, $input-place-holder-color) {
+   label {
+      @include label($label-color);
+   }
+
+   .mdi {
+      @include icons($color: $icon-color, $background: $icon-background);
+
+      &.mdi-close-circle-outline {
+         color: $red;
+      }
+   }
+
+   input {
+      @include input($border-color: $input-border-color, $color: $input-color, $place-holder-color: $input-place-holder-color);
+   }
+}
+
+@mixin constructStyleValidations($valid-color, $invalid-color, $invalid-second-color) {
+   &.is-invalid,
+   &.ng-touched {
+      &.ng-valid{
+         input {
+            border-color: $valid-color;
+         }
+
+         label {
+            color: $valid-color;
+         }
+      }
+   
+      &.ng-invalid{
+         input {
+            border-color: $invalid-color;
+            + span::before{
+               @include linearGradient($color1: $invalid-color, $color2: $invalid-second-color);
+               width: 100%;
+            }
+         }
+
+         label {
+            color: $invalid-color;
+         }
+      }
+   }
+}
+
+@mixin inputDefault() {
+   @include constructInput($label-color: $blue-hard, $icon-color: $blue, $icon-background: $white,
+                           $input-border-color: $grey, $input-color: $grey-hard, $input-place-holder-color: $grey);
+
+   span{
+      @include propertiesLineGradient($position: relative, $color1: $blue, $color2: $green);
+   }
+
+   @include constructStyleValidations($valid-color: $blue, $invalid-color: $red, $invalid-second-color: $purple);
+}
+
+@mixin inputWhite() {
+   @include constructInput($label-color: $white, $icon-color: $white, $icon-background: transparent,
+                           $input-border-color: $white, $input-color: $white, $input-place-holder-color: $white);
+
+   span {
+      @include propertiesLineGradient($position: relative, $color1: $red-ligth, $color2: $white);
+   }
+
+   @include constructStyleValidations($valid-color: $white, $invalid-color: $red, $invalid-second-color: $white);
+}
+
+:host {
+
+   &[white],
+   &.white {
+      @include inputWhite();
+   }
+
+   @include inputDefault();
+
+   input.filled.padding-filled ~ span::before,
+   input.filled ~ span::before,
+   input:focus + span::before {
+      width: 100%;
+    }
+
+    &.form-control {
+      display: contents;
+   }
+
+
+   &.disabled,
+   &[disabled],
+   &[disabled="true"] {
+      pointer-events: none;
+
+      input {
+         background: $white;
+         color: $grey;
+         cursor: default;
+         pointer-events: none;
+
+         &.hover {
+               background: inherit;
+               color: inherit;
+         }
+      }
+
+      .mdi {
+         display: none;
+      }
+
+      span::before {
+         width: 0 !important;
+      }
+   }
+
+}

@@ -1,0 +1,7 @@
+<label>{{label}}</label>
+<input type="{{type}}" [(ngModel)]="value" placeholder="{{placeholder}}"
+       [ngClass]="{'filled' : value != null && value != '', 'padding-filled' : showClearButton}"/>
+<i class="mdi mdi-close-circle-outline" (click)="value = null" *ngIf="value != null && showClearButton"></i>
+<i class="mdi" (click)="toggleSeePassword()" *ngIf="value != null && showSeePasswordButton"
+   [ngClass]="{'mdi-eye-outline' : !hidePassword, 'mdi-eye-off-outline' : hidePassword}"></i>
+<span></span>

@@ -1,0 +1,8 @@
+<div class="action-bar" 
+    draggable="{{isDraggable}}"
+    (click)="toggleBar()" 
+    (touchmove)="touchMove($event)"
+    [ngClass]="{'menu-close' : isClosed, 'menu-minimized' : isMinimized, 'opened' : opened}">
+    <ng-content></ng-content>
+    <i class="mobile-icon mdi mdi-plus"></i>
+</div>

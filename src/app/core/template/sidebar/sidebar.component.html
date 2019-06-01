@@ -1,0 +1,47 @@
+<nav class="sidebar" [ngClass]="{'menu-close' : isClosed, 'minimize-sidebar' : isMinimized}">
+  <div class="logo">
+      <img class="logo-full" src="assets/logo-stefanini-white.svg">
+      <img class="logo-signature" src="assets/logo-stefanini-white-signature.svg">
+  </div>
+  <ul class="mt-4">
+    <ng-template ngFor let-item let-i="index" [ngForOf]="itemsMenu">
+
+      <li *ngIf="item.submenus == null" (click)="reorganizeMenu()" [routerLink]="[item.route]" [routerLinkActive]="['active']">
+          <div class="content-item">
+            <i class="{{item.icon}}"></i>
+            <span>{{item.title}}</span>
+          </div>
+      </li>
+  
+      <li *ngIf="item.submenus != null" (click)="toggleSubmenu(item.title, i)" [routerLinkActive]="['active']"
+          [ngClass]="{'active-sub-menu' : i === indexOpenedSubMenu}" [ngStyle]="{'height' : getHeight(i, item.submenus.length)}">
+        
+        <div class="content-item">
+          <i class="{{item.icon}}"></i>
+          <span>{{item.title}}</span>
+          <i class="chevron-icon mdi mdi-chevron-down"></i>
+        </div>
+
+        <app-submenu #submenu>
+          <li class="sub-item" *ngFor="let sub of item.submenus" (click)="closeMenuMobile()" [routerLink]="[sub.route]" [routerLinkActive]="['active-sub-item']">
+              <div class="content-item">
+                <i class="mdi mdi-checkbox-blank-circle"></i>
+                <span>{{sub.title}}</span>
+              </div>
+          </li>
+        </app-submenu>
+      </li>
+
+    </ng-template>
+  </ul>
+  <div class="sidebar-controls">
+    <i class="mdi mdi-account-edit"></i>
+    <i class="mdi mdi-settings-outline"></i>
+    <i class="control-minization mdi" (click)="minimizeSidebar()" appTooltip="{{isMinimized ? 'Expandir' : 'Minimizar'}}"
+       [ngClass]="{'mdi-select-compare' : !isMinimized, 'mdi-border-right-variant' : isMinimized}"></i>
+  </div>
+  <div class="background"></div>
+</nav>
+<div class="shadow-menu" (click)="toggle()" *ngIf="isMobile && !isClosed">
+  <i class="mdi mdi-close"></i>
+</div>

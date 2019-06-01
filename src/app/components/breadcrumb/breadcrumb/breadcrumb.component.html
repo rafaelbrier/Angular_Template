@@ -1,0 +1,18 @@
+<div class="title-breadcrumb" [ngClass]="{'menu-close' : isClosed || isMobile, 'menu-minimized' : isMinimized}" *ngIf="breadcrumbs.length > 0">
+    <i (click)="back()" class="mobile-back-button mdi mdi-undo-variant"></i>
+    <span class="title">{{breadcrumbs[breadcrumbs.length - 1].label}}</span>
+    <span class="bread ml-auto d-inline-flex w-50">
+        <span class="step">
+            <p class="url" (click)="navigate('home')">Home</p>
+        </span>
+        <span class="step" *ngFor="let bread of breadcrumbs; let i = index;">
+            <i class="mdi mdi-chevron-double-right ml-1 mr-1"></i>
+            <p  (click)="navigate(bread.route)"
+                [ngClass]="{'url' : bread.route != null && i != breadcrumbs.length - 1,
+                            'font-weight-bold' : i == breadcrumbs.length - 1,
+                            'bread-father' : bread.route == null}">
+                    {{bread.label}}
+            </p>
+        </span>
+    </span>
+</div>

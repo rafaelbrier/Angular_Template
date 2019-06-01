@@ -1,0 +1,27 @@
+<label>{{label}}</label>
+<div class="dropdown" [ngClass]="{'filled' : value != null, 'loading' : loading}">
+    <span class="placeholder" (click)="toggleOptions()" *ngIf="value == null">{{placeholder}}</span>
+    <span class="selected" (click)="toggleOptions()" *ngIf="value != null">{{selectedOption | titlecase}}</span>
+    <i class="mdi mdi-close-circle-outline" (click)="value = null" *ngIf="value != null && !loading"></i>
+    <i class="mdi" (click)="toggleOptions()" [ngClass]="{'mdi-chevron-up' : isOpen, 'mdi-chevron-down' : !isOpen}" *ngIf="!loading"></i>
+    <i class="mdi mdi-loading" *ngIf="loading"></i>
+</div>
+<span class="line-filled"></span>
+<div class="options" [ngClass]="{'open-options' : isOpen}" tabindex="0" (focus)="isOpen = true">
+    <i class="close-button-mobile mdi mdi-close" (click)="toggleOptions()"></i>
+    <div class="option multi extra-option mb-1" *ngIf="(type === 'multi' && toggleAll) || filter">
+        <i class="mdi" (click)="selectAll()" *ngIf="toggleAll" 
+           [ngClass]="{'mdi-check-circle' : isAllSelected(), 'mdi-checkbox-blank-circle-outline' : !isAllSelected()}"></i>
+        <span *ngIf="!filter" (click)="selectAll()">Todos</span>
+        <input *ngIf="filter" placeholder="Filtrar..." [(ngModel)]="filterValue" (focus)="saveOptionsFocusFilter()" (keyup)="filterOnKeyup($event)">
+    </div>
+    <div class="option" *ngFor="let option of options; let i = index" (click)="select(option, i)" 
+         [ngClass]="{'multi' : type === 'multi', 'single-selected' : type === 'select' && isSelected(i, option.value, option.key)}">
+
+        <i class="mdi" [ngClass]="{'mdi-check-circle' : isSelected(i, option.value), 'mdi-checkbox-blank-circle-outline' : !isSelected(i, option.value)}" 
+           *ngIf="type === 'multi'"></i>
+
+        <span>{{option.value | titlecase}}</span>
+    </div>
+    <p class="empty-message" *ngIf="options == null || options.length == 0">{{emptyOptionsMessage}}</p>
+</div>

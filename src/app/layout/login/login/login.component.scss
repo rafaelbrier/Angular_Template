@@ -1,0 +1,69 @@
+@import '../../../scss/shared/shared.scss';
+
+.login {
+    display: inline-flex;
+    position: fixed;
+    width: 100%;
+
+    .content-img {
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        border-right: thin solid $grey;
+        background: url('../../../../assets/LoginWall.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .content-login {
+        width: 650px;
+        background: linear-gradient(to bottom, black 20%, $red-hard 100%);
+        background-size: 150% 150%;
+        max-height: 100vh;
+        height: 100vh; 
+        display: flex; 
+        align-items: center; 
+        padding: 2em;
+
+        .box {
+            display: grid;
+            width: 100%;
+
+            .logo {
+                width: 120px;
+                margin: 0 auto;
+                z-index: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .login {
+        .content-img {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            background-size: cover;
+            background-position: center center;
+            &:after {
+                content: "";
+                @include sidebarColorGradient();
+            }
+        }
+
+        .content-login {
+            width: 100vw;
+            align-items: initial;
+
+            .box {
+                margin: 0 auto;
+                
+                .logo {
+                    width: 120px;
+                    content: url('../../../../assets/UmbrellaLogo.png');
+                }
+            }
+        }
+    }
+}

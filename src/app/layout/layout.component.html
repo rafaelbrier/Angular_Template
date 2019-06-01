@@ -1,0 +1,9 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-breadcrumb (hasBreadcrumb)="changeRouterContainerTop($event)"></app-breadcrumb>
+
+<div class="router-container" [ngClass]="{'menu-close' : isClosed || isMobile, 'top-breadcrumb' : hasBreadcrumb, 'menu-minimized' : isMinimized}">
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</div>

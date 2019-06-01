@@ -1,0 +1,145 @@
+@import '../../../scss/shared/shared.scss';
+
+@mixin setColors($background-color, $text-color, $hover-color) {
+    background: $background-color;
+    color: $text-color;
+    &:hover{
+        background: $hover-color;
+    }
+}
+
+@mixin setOutlineColors($text-color, $border-color) {
+    background: $white;
+    color: $text-color;
+    border: thin solid $border-color;
+    &:hover{
+        background: $border-color;
+        color: $white;
+    }
+}
+
+@mixin button($background-color, $text-color, $hover-color) {
+
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 10pt;
+    max-height: 37px;
+    cursor: pointer;
+    @include commonAnimate();
+    @include setColors($background-color: $background-color, $text-color: $text-color, $hover-color: $hover-color);
+
+    &:hover {
+        @include commonAnimate();
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+:host {
+
+    i {
+        pointer-events: none;
+    }
+
+    button {
+        @include button($background-color: $blue, $text-color: $white, $hover-color: $blue-hard);
+    }
+
+    &[btn-outline] {
+        button {
+            @include setOutlineColors($text-color: $blue, $border-color: $blue);
+        }
+    }
+
+    &.btn-green,
+    &[btn-green]{
+        button {
+            @include setColors($background-color: $green, $text-color: $white, $hover-color: $green-hard);
+        }
+        &[btn-outline] {
+            button {
+                @include setOutlineColors($text-color: $green, $border-color: $green);
+            }
+        }
+    }
+    
+    &.btn-yellow,
+    &[btn-yellow] {
+        button {
+            @include setColors($background-color: $yellow, $text-color: $white, $hover-color: $yellow-hard);
+        }
+        &[btn-outline] {
+            button {
+                @include setOutlineColors($text-color: $yellow, $border-color: $yellow);
+            }
+        }
+    }
+   
+    &.btn-orange,
+    &[btn-orange] {
+        button {
+            @include setColors($background-color: $orange, $text-color: $white, $hover-color: $orange-hard);
+        }
+        &[btn-outline] {
+            button {
+                @include setOutlineColors($text-color: $orange, $border-color: $orange);
+            }
+        }
+    }
+
+    &.btn-sky-blue,
+    &[btn-sky-blue] {
+        button {
+            @include setColors($background-color: $sky-blue, $text-color: $white, $hover-color: $sky-blue-hard);
+        }
+        &[btn-outline] {
+            button {
+                @include setOutlineColors($text-color: $sky-blue, $border-color: $sky-blue);
+            }
+        }
+    }
+    
+    &.btn-red,
+    &[btn-red] {
+        button {
+            @include setColors($background-color: $red, $text-color: $white, $hover-color: $red-hard);
+        }
+        &[btn-outline] {
+            button {
+                @include setOutlineColors($text-color: $red, $border-color: $red);
+            }
+        }
+    }
+    
+    &.btn-purple,
+    &[btn-purple] {
+        button {
+            @include setColors($background-color: $purple, $text-color: $white, $hover-color: $purple-hard);
+        }
+        &[btn-outline] {
+            button {
+                @include setOutlineColors($text-color: $purple, $border-color: $purple);
+            }
+        }
+    }
+
+    &.disabled,
+    &[disabled],
+    &[disabled="true"] {
+        pointer-events: none;
+        button {
+            background: $grey-ligth;
+            color: $grey;
+            cursor: default;
+    
+            &.hover {
+                background: inherit;
+                color: inherit;
+            }
+        }
+    }
+}
+

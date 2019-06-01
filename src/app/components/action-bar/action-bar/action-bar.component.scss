@@ -1,0 +1,113 @@
+@import '../../../scss/shared/shared.scss';
+
+.action-bar {
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - #{$width-sidebar});
+    height: $heigth-header;
+    border-top: thin solid $grey;
+    display: inline-flex;
+    align-items: center;
+    left: $width-sidebar;
+    place-content: flex-end;
+    padding-right: 25px;
+    background: $white;
+    @include commonAnimate();
+
+    .mobile-icon {
+        display: none;
+        color: $blue;
+        font-size: 20pt;
+        position: absolute;
+        right: 0;
+        @include commonAnimate();
+    }
+
+    &.menu-close {
+        left: 0;
+        width: 100%;
+        @include commonAnimate();
+    }
+    
+    &.menu-minimized {
+        left: $width-sidebar-minimized;
+        width: calc(100% - #{$width-sidebar-minimized});
+        @include commonAnimate();
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .action-bar {
+        width: $heigth-header !important;
+        height: $heigth-header;
+        right: $space-separator;
+        bottom: $space-separator;
+        left: auto !important;
+        align-items: center;
+        padding: 0;
+        border: none;
+        z-index: 3;
+
+        .mobile-icon {
+            width: $heigth-header;
+            height: $heigth-header;
+            background: $white;
+            border-radius: 100%;
+            transform: rotate(90deg);
+            box-shadow: 0 0 11px -3px black;
+            display: flex;
+            align-items: center;
+            place-content: center;
+        }
+
+        &::ng-deep {
+            app-button {
+                position: absolute;
+                margin: 0 !important;
+                transition: padding .2s ease;
+
+                button {
+                    padding: 7px 11px;
+                    span {
+                        display: none;
+                    }
+                }
+
+                &[back-button] {
+                    display: none;
+                }
+            }
+        }
+
+        &.opened {
+            height: $heigth-header;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            @include commonAnimate();
+
+            .mobile-icon {
+                position: absolute;
+                transform: rotate(-45deg);
+                @include commonAnimate();
+            }
+
+            &::ng-deep {
+                app-button {
+                    margin: $space-separator !important;
+                    position: initial;
+                    @include commonAnimate();
+
+                    &:first-child {
+                        padding-right: 50px;
+                    }
+                }
+            }
+        }
+
+        &.invert-width-grow {
+            transform: rotate(180deg);
+        }
+    }
+}

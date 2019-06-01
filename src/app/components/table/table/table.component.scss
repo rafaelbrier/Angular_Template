@@ -1,0 +1,244 @@
+@import '../../../scss/shared/shared.scss';
+
+:host {
+    
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 $space-separator;
+    }
+
+    thead {
+        font-size: 10pt;
+        color: $grey-hard;
+        th{
+           padding: 0 5px;
+        }
+    }
+
+    tbody {
+
+        tr{
+            @include commonAnimate();
+
+            &:hover {
+                box-shadow: 0 0 6px -4.5px black;
+                border-radius: 8px;
+                cursor: pointer;
+                @include commonAnimate();
+            }
+
+            td {
+                max-width: 0;
+                padding: 5px;
+                border-top: thin solid $grey;
+                border-bottom: thin solid $grey;
+
+                .header-mobile {
+                    display: none;
+                    font-weight: bold;
+                    color: $grey-hard;
+                    font-size: 10pt;
+                    margin-right: $space-separator;
+                }
+
+                .text-header {
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                
+                &.actions{
+                    &::ng-deep {
+                        app-button {
+                            button {
+                                padding: 7px 11px;
+                            }
+                        }
+                    }
+                }
+
+                &:first-child {
+                    border-right: none;
+                    border-left: thin solid $grey;
+                    border-top: thin solid $grey;
+                    border-bottom: thin solid $grey;
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
+                }
+                
+                &:last-child {
+                    border-right: thin solid $grey;
+                    border-left: none;
+                    border-top: thin solid $grey;
+                    border-bottom: thin solid $grey;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    :host {
+        table {
+            display: grid;
+
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: grid;
+
+                tr {
+                    display: grid;
+                    border: thin solid $grey;
+                    border-radius: 6px;
+                    margin-bottom: 10px;
+                    min-height: 35px;
+                    height: 35px;
+                    padding: 0;
+                    @include commonAnimate();
+
+                    .expand-row-button {
+                        display: flex;
+                        align-items: center;
+                        place-content: center;
+                        height: 100%;
+                        width: 35px;
+                        color: $blue;
+                        margin-left: auto;
+                        z-index: 1;
+                        background: white;
+                        @include commonAnimate();
+                    }
+
+                    .swipe-row-button {
+                        display: flex;
+                        align-items: center;
+                        place-content: center;
+                        height: 100%;
+                        width: 35px;
+                        color: $blue;
+                        z-index: 1;
+                        background: white;
+                        @include commonAnimate();
+                    }
+
+                    td {
+                        border: none;
+                        width: 100% !important;
+                        align-items: center;
+                        padding: 0;
+                        margin: 0 10px;
+                        max-width: initial;
+                        @include commonAnimate();
+
+                        .text-header {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        &:first-child {
+                            display: inline-flex;
+
+                            .header-mobile {
+                                display: block;
+                            }
+                        }
+                        
+                        &:not(:first-child):not(.actions) {
+                            display: none;
+                            width: 80vw !important;
+                        }
+
+                        &.actions {
+                            width: 0 !important;
+                            right: 16px;
+                            padding: 0;
+                            display: flex;
+                            place-content: center;
+                            justify-content: flex-start;
+                            flex-direction: row;
+                            flex: inherit;
+                            overflow: hidden;
+                            border-radius: 0;
+                            @include commonAnimate();
+                            
+                            &::ng-deep {
+                                app-button {
+                                    display: flex;
+                                    margin: 0 !important;
+    
+                                    button {
+                                        border-radius: 0;
+                                    }
+
+                                    &:first-child {
+                                        button {
+                                            box-shadow: inset 2px 0px 4px -3px black;
+                                        }
+                                    }
+
+                                    &:last-child {
+                                        button {
+                                            border-top-right-radius: 6px;
+                                            border-bottom-right-radius: 6px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        box-shadow: none;
+                    }
+
+                    &.expand {
+                        height: auto;
+                        @include commonAnimate();
+
+                        .expand-row-button {
+                            transform: rotate(-180deg);
+                            @include commonAnimate();
+                        }
+
+                        td {
+                            &:not(:first-child):not(.actions) {
+                                display: inline-flex;
+
+                                .header-mobile {
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+
+                    &.swipe {
+
+                        .expand-row-button {
+                            @include commonAnimate();
+                        }
+
+                        .swipe-row-button {
+                            transform: rotate(-180deg);
+                            @include commonAnimate();
+                        }
+
+                        td {
+                            &.actions {
+                                flex: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
