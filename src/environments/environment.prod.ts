@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  applicationURL: 'https://springbootrafaelbrier.herokuapp.com/api/'
 };
