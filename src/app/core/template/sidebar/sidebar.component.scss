@@ -19,16 +19,16 @@
         border-bottom: thin solid $white;
 
         .logo-full {
-            width: 60%;
-            height: 60%;
+            width: 70%;
+            height: 100%;
             margin: 0 auto;
         }
 
         .logo-signature{
             display: none;
             margin: 0 auto;
-            width: 75%;
-            height: 75%;
+            width: 32px;
+            height: 32px;
         }
     }
 
@@ -128,7 +128,7 @@
         display: block;
         top: 0;
         left: 0;
-        background: url('../../../../assets/bg-menu-3.jpg');
+        background: url('../../../../assets/MenuWall.jpg');
         background-size: cover;
         background-position: center center;
 
@@ -251,7 +251,7 @@
 
     i {
         font-size: 20pt;
-        color: $blue;
+        color: $red;
         margin-left: $space-separator;
     }
 }

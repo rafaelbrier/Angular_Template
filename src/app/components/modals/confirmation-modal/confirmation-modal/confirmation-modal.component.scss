@@ -13,7 +13,7 @@
 
     .confirmation-modal {
         width: 50%;
-        height: 27%;
+        height: 45%;
         margin: 0 auto;
         background: white;
         border: thin solid $grey;
@@ -22,7 +22,7 @@
 
         .confirmation-modal-header {
             padding: $space-separator;
-            color: $blue;
+            color: $red;
             font-weight: bold;
             border-bottom: thin solid $grey;
             height: 20%;
@@ -53,6 +53,12 @@
             place-content: flex-end;
             align-items: center;
             border-top: thin solid $grey;
+        }
+    }
+
+    @media screen and (max-width: 720px) {
+        .confirmation-modal {
+            width: 80% !important;
         }
     }
 }

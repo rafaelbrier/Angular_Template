@@ -56,11 +56,11 @@ export class CadastrarUsuarioComponent extends BaseFormComponent implements OnIn
 
   public onSubmit(): void {
     this.submitted = true;
-
+    
     if (this.registerForm.invalid) {
       return;
     }
-
+    
     this.bindFields(this.user, this.registerForm);
     this.save();
   }

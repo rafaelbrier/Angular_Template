@@ -70,7 +70,7 @@ export class DropdownComponent implements ControlValueAccessor {
     public filterOnKeyup(value): void {
         if (this.filterValue && this.filterValue !== '') {
             const filtered = this.options.filter(option => {
-                return option.value.indexOf(this.filterValue) > -1;
+               return option.value.toLowerCase().indexOf(this.filterValue.toLowerCase()) > -1;
             });
             this.options = filtered;
             this.filtered = true;
@@ -86,10 +86,12 @@ export class DropdownComponent implements ControlValueAccessor {
     }
 
     public saveOptionsFocusFilter(): void {
-        this.auxFilterOptions = [];
-        this.options.forEach(option => {
-            this.auxFilterOptions.push(option);
-        });
+        if(!this.filterValue) {
+            this.auxFilterOptions = [];
+            this.options.forEach(option => {
+                this.auxFilterOptions.push(option);
+            });
+        }
     }
 
     public selectAll(): void {
@@ -241,26 +243,7 @@ export class DropdownComponent implements ControlValueAccessor {
             }
             return key.length > 0 ? key[0].value : null;
         }
-        const opts: string[] = [];
-        if (this.value) {
-            for (let index = 0; index < this.value.length; index++) {
-                const propertyValue = this.getValuePropertyBind(index);
-                let opt: KeyValue = new KeyValue();
-                if (this.filtered) {
-                    opt = this.auxFilterOptions ? this.auxFilterOptions.filter(o => o.key === propertyValue)[0] : null;
-                } else {
-                    opt = this.options ? this.options.filter(o => o.key === propertyValue)[0] : null;
-                }
-                if (opt) {
-                    opts.push(opt.value);
-                    if (!this.filtered && !this.isSelected(this.options.indexOf(opt), opt.value)) {
-                        this.multiSelecteds.push(this.options.indexOf(opt));
-                        this.multiSelectedsValues.push(opt.value);
-                    }
-                }
-            }
-            return opts.length > 0 ? opts.join(', ') : null;
-        }
+        return this.multiSelectedsValues.length > 0 ? this.multiSelectedsValues.join(', ') : null;
     }
 
     private getValuePropertyBind(index?: number): any {

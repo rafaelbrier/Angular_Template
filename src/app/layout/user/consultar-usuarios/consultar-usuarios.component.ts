@@ -17,11 +17,11 @@ export class ConsultarUsuariosComponent {
   public cols: TableColumn[] = [];
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private location: Location,
-              private userService: UserService) {
-      this.users = this.route.snapshot.data.users;
-      this.constructCols();
+    private router: Router,
+    private location: Location,
+    private userService: UserService) {
+    this.users = this.route.snapshot.data.users;
+    this.constructCols();
   }
 
   private constructCols(): void {
@@ -33,8 +33,8 @@ export class ConsultarUsuariosComponent {
 
   public getAuthorities(user: User): string {
     if (user) {
-      const auths = user.authorities.map(auth => auth.description);
-      return auths.join(',');
+      const auths = user.authorities.map(auth => auth.name).sort((a,b) => 0 - (a > b ? -1 : 1));;
+      return auths.join(', ');
     }
     return '';
   }
@@ -46,7 +46,7 @@ export class ConsultarUsuariosComponent {
   }
 
   public editar(id: number): void {
-    this.router.navigate(['user/cadastrar/editar/', id ]);
+    this.router.navigate(['user/cadastrar/editar/', id]);
   }
 
   public novo(): void {
@@ -56,5 +56,4 @@ export class ConsultarUsuariosComponent {
   public back(): void {
     this.location.back();
   }
-
 }

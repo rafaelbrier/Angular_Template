@@ -35,13 +35,17 @@ export class ConfirmationModalService {
    public accept(): void {
       this.closeModal();
       this.isAccepted.next(true);
-      return this.handlerAccept(true);
+      if(this.handlerAccept) {
+         return this.handlerAccept(true);
+      }
    }
 
    public reject(): void {
       this.closeModal();
       this.isAccepted.next(false);
-      return this.handlerDeny(false);
+      if(this.handlerDeny) {
+         return this.handlerDeny(false);
+      }
    }
 
    private closeModal(): void {

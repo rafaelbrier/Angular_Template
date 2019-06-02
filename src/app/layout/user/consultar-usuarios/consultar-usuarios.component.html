@@ -3,7 +3,7 @@
       <app-table [values]="users" [cols]="cols" [hasActions]="true" actionsWidth="20%">
           <ng-template let-user="rowData" let-index="index">
               <app-button btn-sky-blue appTooltip="Visualizar" class="mr-2" icon="mdi mdi-magnify"></app-button>
-              <app-button appTooltip="Editar" (click)="editar(user.id)" class="mr-2" icon="mdi mdi-pencil"></app-button>
+              <app-button btn-blue appTooltip="Editar" (click)="editar(user.id)" class="mr-2" icon="mdi mdi-pencil"></app-button>
               <app-button btn-red appTooltip="Excluir" (click)="delete(user.id, index)" icon="mdi mdi-trash-can-outline"></app-button>
           </ng-template>
       </app-table>

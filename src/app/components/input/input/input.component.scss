@@ -109,14 +109,14 @@
 }
 
 @mixin inputDefault() {
-   @include constructInput($label-color: $blue-hard, $icon-color: $blue, $icon-background: $white,
+   @include constructInput($label-color: $dark, $icon-color: $dark, $icon-background: $white,
                            $input-border-color: $grey, $input-color: $grey-hard, $input-place-holder-color: $grey);
 
    span{
-      @include propertiesLineGradient($position: relative, $color1: $blue, $color2: $green);
+      @include propertiesLineGradient($position: relative, $color1: $red-hard, $color2: $dark);
    }
 
-   @include constructStyleValidations($valid-color: $blue, $invalid-color: $red, $invalid-second-color: $purple);
+   @include constructStyleValidations($valid-color: $dark, $invalid-color: $red, $invalid-second-color: $purple);
 }
 
 @mixin inputWhite() {

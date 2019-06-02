@@ -15,7 +15,8 @@
     @include commonAnimate();
 
     .title {
-        color: $blue;
+        color: $red;
+        font-weight: bold;
         font-size: 1.4rem;
         margin: 0;
     }
@@ -25,11 +26,12 @@
         position: absolute;
         left: $space-separator;
         font-size: larger;
-        color: $blue;
+        color: $red;
     }
 
     .bread{
-        color: $blue-ligth;
+        color: $red-ligth;
+        font-weight: bold;
         place-content: flex-end;
         font-size: 10pt;
 

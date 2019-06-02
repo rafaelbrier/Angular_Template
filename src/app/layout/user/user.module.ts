@@ -16,6 +16,7 @@ import { ConfirmationModalModule } from 'src/app/components/modals/confirmation-
 import { TableModule } from 'src/app/components/table/table.module';
 import { AuthoritieService } from './service/profile.service';
 import { DropdownModule } from 'src/app/components/dropdown/dropdown.module';
+import { InvalidFeedbackModule } from 'src/app/components/invalid-feedback/invalid-feedback.module';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { DropdownModule } from 'src/app/components/dropdown/dropdown.module';
         CommonModule,
         ButtonModule,
         InputModule,
+        InvalidFeedbackModule,
         DropdownModule,
         FormsModule,
         ActionBarModule,

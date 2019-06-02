@@ -4,7 +4,7 @@
 
     label {
        display: flex;
-       color: $blue-hard;
+       color: $dark;
     }
 
     .dropdown {
@@ -21,7 +21,7 @@
 
         i {
             margin-left: auto;
-            color: $blue;
+            color: $dark;
             background: white;
             font-size: 13pt;
 
@@ -87,7 +87,7 @@
                 font-size: 17pt;
                 position: absolute;
                 right: 10px;
-                color: $blue;
+                color: $dark;
             }
         }
 
@@ -164,7 +164,7 @@
     }
 
     .line-filled{
-        @include propertiesLineGradient($position: relative, $color1: $blue, $color2: $green);
+        @include propertiesLineGradient($position: relative, $color1: $red-hard, $color2: $dark);
      }
 
     .dropdown.loading ~ .line-filled::before {
@@ -183,7 +183,7 @@
    &.ng-touched {
       &.ng-valid{
          label {
-            color: $blue;
+            color: $dark;
          }
       }
    

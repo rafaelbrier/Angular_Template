@@ -4,28 +4,25 @@
       <app-input label="Username *" formControlName="username" class="form-control" type="text"
         [ngClass]="{ 'is-invalid': submitted && form.username.errors }">
       </app-input>
-      <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
-        <div *ngIf="form.username.errors.required">O Campo Username é obrigatório!</div>
-      </div>
+      <app-invalid-feedback [formItem]="form.username" validation="required" [submitted]="submitted"
+              message="O Campo Username é obrigatório!"></app-invalid-feedback>
     </div>
     <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-3 mt-md-0">
       <app-dropdown label="Profiles *" [toggleAll]="true" [filter]="true" formControlName="authorities" class="form-control" propertyBind="id" 
                     [options]="(authorities | async)" type="multi"
                     [ngClass]="{ 'is-invalid': submitted && form.authorities.errors }" [loading]="!(authorities | async)">
       </app-dropdown>
-      <div *ngIf="submitted && form.authorities.errors" class="invalid-feedback">
-        <div *ngIf="form.authorities.errors.required">O Campo Profiles é obrigatório!</div>
-      </div>
+      <app-invalid-feedback [formItem]="form.authorities" validation="required" [submitted]="submitted"
+              message="O Campo Profiles é obrigatório!"></app-invalid-feedback>
     </div>
     <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-3 mt-md-0">
       <app-input label="Password *" formControlName="password" class="form-control" type="password"
         [ngClass]="{ 'is-invalid': submitted && form.password.errors }">
       </app-input>
-      <div *ngIf="form.password.errors" class="invalid-feedback"
-        [ngClass]="{'d-block' : form.password.errors && form.password.touched}">
-        <div *ngIf="form.password.errors.required">O Campo Password é obrigatório!</div>
-        <div *ngIf="form.password.errors.minlength">O Campo Password deve possuir pelomenos 4 digitos!</div>
-      </div>
+      <app-invalid-feedback [formItem]="form.password" validation="required" [submitted]="submitted"
+              message="O Campo Password é obrigatório!"></app-invalid-feedback>
+      <app-invalid-feedback [formItem]="form.password" validation="minlength"
+              message="O Campo Password deve possuir pelo menos 4 digitos!"></app-invalid-feedback>
     </div>
   </div>
 
