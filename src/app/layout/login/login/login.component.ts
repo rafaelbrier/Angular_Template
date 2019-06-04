@@ -45,7 +45,6 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     this.loaderService.show();
     const user = { username: this.registerForm.value.username, password: this.registerForm.value.password };
     this.securityService.clearAll();
-    this.securityService.autenticar(user);
-    this.loaderService.hide();
+    this.securityService.autenticar(user, () => this.loaderService.hide());
   }
 }

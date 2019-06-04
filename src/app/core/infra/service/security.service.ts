@@ -21,14 +21,16 @@ export class SecurityService {
                 private expirationDateService: ExpirationDateService,
                 private toastrService: ToastrCustomService) { }
 
-    public autenticar(user: any) {
+    public autenticar(user: any, callback: (value: any) => void) {
         return new HttpConnectionBuilder<any>(this.http)
             .addEndPoint('login')
             .addHandlerSucess((response: HttpResponse<any>) => {
                 this.router.navigate(['home']);
+                callback.call(this);
             })
-            .addHandlerError(error => {
+             .addHandlerError(error => {
                 this.toastrService.showWarningMessage('Login ou Senha Incorretas');
+                callback.call(this);
             })
             .addParameter(user)
             .buildPost();
