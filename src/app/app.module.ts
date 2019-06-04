@@ -9,6 +9,7 @@ import { LocalStorageService } from './core/infra/service/local-storage.service'
 import { ErrorInterceptor } from './core/infra/interceptors/error.interceptor';
 import { ExpirationDateService } from './core/infra/service/expiration-date.service';
 import { ToastrCustomModule } from './core/toastr/toastr.module';
+import { LoaderService } from './core/infra/service/loader.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ToastrCustomModule } from './core/toastr/toastr.module';
     ToastrCustomModule
   ],
   providers: [
-    SecurityService, ExpirationDateService, LocalStorageService,
+    SecurityService, ExpirationDateService, LocalStorageService, LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
